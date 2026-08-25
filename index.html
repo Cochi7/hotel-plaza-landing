@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Plaza — Andalgalá, Catamarca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay:#9C4A2E;
+    --clay-dark:#7A3620;
+    --ochre:#C98A3E;
+    --cactus:#5C6B47;
+    --plaster:#EDE0C8;
+    --plaster-soft:#F4EBD9;
+    --dusk:#2B1D16;
+    --dusk-soft:#3D2A1C;
+    --line: rgba(43,29,22,0.14);
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Work Sans', sans-serif;
+    background: var(--plaster);
+    color: var(--dusk);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img, svg { display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(237,224,200,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
+    color: var(--dusk);
+  }
+  .brand svg{ width:30px; height:30px; }
+  .nav-links{ display:flex; gap:34px; font-size:0.92rem; font-weight:500; color: var(--dusk-soft); }
+  .nav-links a{ position:relative; padding: 4px 0; transition: color .2s ease; }
+  .nav-links a:hover{ color: var(--clay); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background: var(--clay); transition: width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight:600; font-size:0.92rem;
+    border: 1.5px solid transparent;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{
+    background: var(--clay); color: var(--plaster-soft);
+    box-shadow: 0 6px 18px rgba(156,74,46,0.28);
+  }
+  .btn-primary:hover{ background: var(--clay-dark); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(156,74,46,0.34); }
+  .btn-primary:focus-visible{ outline: 3px solid var(--ochre); outline-offset:2px; }
+
+  .btn-ghost{
+    border-color: var(--dusk); color: var(--dusk); background:transparent;
+  }
+  .btn-ghost:hover{ background: var(--dusk); color: var(--plaster-soft); }
+
+  .nav-cta{ display:flex; }
+  .menu-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    background: linear-gradient(180deg, var(--dusk) 0%, var(--dusk-soft) 62%, var(--clay-dark) 100%);
+    color: var(--plaster-soft);
+    overflow: hidden;
+    padding-top: 96px;
+  }
+  .hero-inner{
+    position:relative; z-index:3;
+    padding: 64px 32px 130px;
+    max-width: 1140px; margin:0 auto;
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--ochre); font-weight:600; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1.5px; background: var(--ochre); display:block; }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+    color: var(--plaster-soft);
+    margin-bottom: 22px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--ochre); font-weight: 500; }
+
+  .hero p.lead{
+    font-size: 1.12rem; line-height:1.65; max-width: 46ch;
+    color: rgba(244,235,217,0.82);
+    margin-bottom: 34px;
+  }
+
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 46px; }
+
+  .hero-stats{
+    display:flex; gap:34px; flex-wrap:wrap;
+  }
+  .hero-stat{ }
+  .hero-stat .n{ font-family:'Fraunces',serif; font-size:1.6rem; color: var(--ochre); }
+  .hero-stat .l{ font-size:0.82rem; color: rgba(244,235,217,0.65); margin-top:2px; }
+
+  .hero-art{ position:relative; z-index:3; }
+
+  .mountains{
+    position:absolute; left:0; right:0; bottom:-2px; z-index:2;
+    width: 100%;
+    height: clamp(70px, 9vw, 130px);
+    display:block;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 108px 0; position:relative; }
+  .section-head{ max-width: 620px; margin-bottom: 56px; }
+  .section-eyebrow{
+    font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--clay); font-weight:600; margin-bottom:14px; display:block;
+  }
+  .section-head h2{ font-size: clamp(1.9rem, 3.4vw, 2.7rem); color: var(--dusk); }
+  .section-head p{ margin-top:16px; font-size:1.05rem; line-height:1.65; color: var(--dusk-soft); max-width: 54ch; }
+
+  .fade-up{
+    opacity:0; transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .fade-up.in{ opacity:1; transform:none; }
+
+  /* ---------- CAROUSEL ---------- */
+  .carousel{
+    position: relative;
+    border-radius: 20px;
+    border: 1.5px solid var(--line);
+    background: var(--plaster-soft);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .carousel-slide{
+    position: absolute; inset: 0;
+    display:flex; align-items:center; justify-content:center;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity .9s ease;
+  }
+  .carousel-slide.active{ opacity: 1; }
+  .carousel-slide img{
+    width:100%; height:100%; object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+  .carousel-dots{
+    position:absolute; bottom:16px; left:50%; transform: translateX(-50%);
+    display:flex; gap:8px; z-index:5;
+  }
+  .carousel-dots .dot{
+    width:8px; height:8px; border-radius:50%;
+    background: rgba(43,29,22,0.25);
+    border:none; cursor:pointer; padding:0;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .carousel-dots .dot.active{ background: var(--clay); transform: scale(1.2); }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background: var(--plaster); }
+  .about-grid{
+    display:grid; grid-template-columns: 1.25fr 0.9fr; gap: 56px; align-items:center;
+  }
+  .about-copy p{ font-size:1.05rem; line-height:1.75; color: var(--dusk-soft); margin-bottom:18px; }
+  .about-copy p:last-child{ margin-bottom:0; }
+  .about-art{
+    background: var(--plaster-soft);
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{ background: var(--dusk); color: var(--plaster-soft); }
+  .services .section-eyebrow{ color: var(--ochre); }
+  .services .section-head h2{ color: var(--plaster-soft); }
+  .services .section-head p{ color: rgba(244,235,217,0.72); }
+
+  .service-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: rgba(244,235,217,0.14);
+    border: 1px solid rgba(244,235,217,0.14);
+    border-radius: 18px;
+    overflow:hidden;
+  }
+  .service-card{
+    background: var(--dusk-soft);
+    padding: 34px 28px;
+    transition: background .25s ease;
+  }
+  .service-card:hover{ background: #4A3323; }
+  .service-card svg{ width:34px; height:34px; margin-bottom:20px; color: var(--ochre); }
+  .service-card h3{ font-size:1.15rem; font-weight:500; margin-bottom:10px; color: var(--plaster-soft); }
+  .service-card p{ font-size:0.94rem; line-height:1.55; color: rgba(244,235,217,0.68); }
+
+  /* ---------- LOCATION ---------- */
+  .location{ background: var(--plaster); }
+  .location-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center;
+  }
+  .location-card{
+    background: var(--plaster-soft);
+    border:1.5px solid var(--line);
+    border-radius:20px;
+    padding:36px;
+  }
+  .location-list{ list-style:none; margin-top:22px; }
+  .location-list li{
+    display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line);
+    font-size:0.98rem; color: var(--dusk-soft);
+  }
+  .location-list li:first-child{ border-top:none; }
+  .location-list svg{ width:20px; height:20px; flex-shrink:0; color: var(--clay); margin-top:2px; }
+  .location-list strong{ color: var(--dusk); display:block; margin-bottom:2px; font-weight:600; }
+
+  /* ---------- BOOKING / DISPONIBILIDAD ---------- */
+  .booking{ background: var(--plaster-soft); }
+  .booking-panel{
+    background: var(--plaster);
+    border: 1.5px solid var(--line);
+    border-radius: 22px;
+    padding: 40px;
+  }
+  .booking-form{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 18px;
+    align-items:end;
+  }
+  .field label{
+    display:block; font-size:0.82rem; font-weight:600; color: var(--dusk-soft);
+    margin-bottom:8px; letter-spacing:0.02em;
+  }
+  .field input, .field select{
+    width:100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--line);
+    background: var(--plaster-soft);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dusk);
+    transition: border-color .2s ease;
+  }
+  .field input:focus, .field select:focus{
+    outline:none; border-color: var(--clay);
+  }
+  .booking-form .btn-primary{ padding: 12px 26px; white-space:nowrap; height:47px; }
+
+  .booking-error{
+    margin-top:14px; font-size:0.88rem; color: var(--clay-dark); display:none;
+  }
+  .booking-error.show{ display:block; }
+
+  .booking-results{ margin-top: 34px; display:none; }
+  .booking-results.show{ display:block; }
+  .booking-results-head{
+    font-size:0.88rem; color: var(--dusk-soft); margin-bottom:18px;
+  }
+  .booking-loading{
+    display:none; align-items:center; gap:10px; margin-top:28px;
+    font-size:0.9rem; color: var(--dusk-soft);
+  }
+  .booking-loading.show{ display:flex; }
+  .spinner{
+    width:16px; height:16px; border-radius:50%;
+    border: 2px solid var(--line); border-top-color: var(--clay);
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  .room-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .room-card{
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+    background: var(--plaster-soft);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .room-card.unavailable{ opacity:0.55; }
+  .room-card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .room-card h4{ font-family:'Fraunces',serif; font-weight:500; font-size:1.15rem; color: var(--dusk); }
+  .room-price{ font-size:0.88rem; color: var(--dusk-soft); }
+  .badge{
+    font-size:0.72rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase;
+    padding: 5px 11px; border-radius:999px; white-space:nowrap;
+  }
+  .badge.available{ background: rgba(92,107,71,0.16); color: var(--cactus); }
+  .badge.unavailable{ background: rgba(156,74,46,0.14); color: var(--clay-dark); }
+  .room-card p.desc{ font-size:0.88rem; color: var(--dusk-soft); line-height:1.5; }
+  .room-card .btn{ margin-top:6px; align-self:flex-start; padding:10px 18px; font-size:0.86rem; }
+
+  @media (max-width: 760px){
+    .booking-form{ grid-template-columns: 1fr; }
+    .room-grid{ grid-template-columns: 1fr; }
+    .booking-panel{ padding: 26px; }
+  }
+
+  /* ---------- REVIEWS / OPINIÓN ---------- */
+  .reviews{ background: var(--plaster); text-align:center; }
+  .reviews-inner{ max-width: 620px; margin: 0 auto; }
+  .reviews .stars{ display:flex; justify-content:center; gap:6px; margin-bottom:26px; }
+  .reviews .stars svg{ width:26px; height:26px; color: var(--ochre); }
+  .reviews h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--dusk); margin-bottom:16px; }
+  .reviews p{ font-size:1.05rem; line-height:1.65; color: var(--dusk-soft); margin-bottom:34px; }
+  .reviews-ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background: linear-gradient(135deg, var(--clay) 0%, var(--clay-dark) 100%);
+    color: var(--plaster-soft);
+    padding: 90px 0;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band h2{ font-size: clamp(2rem, 3.6vw, 3rem); margin-bottom:18px; }
+  .cta-band p{ font-size:1.08rem; color: rgba(244,235,217,0.85); max-width:52ch; margin:0 auto 36px; line-height:1.6; }
+  .cta-band .btn-primary{ background: var(--dusk); box-shadow: 0 10px 26px rgba(43,29,22,0.35); }
+  .cta-band .btn-primary:hover{ background: #1c130e; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--dusk); color: rgba(244,235,217,0.6); padding: 48px 0 32px; }
+  .footer-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  .footer-brand{ font-family:'Fraunces',serif; color: var(--plaster-soft); font-size:1.1rem; font-weight:600; }
+  .footer-copy{ font-size:0.85rem; margin-top:6px; }
+  .footer-links{ display:flex; gap:24px; font-size:0.88rem; }
+  .footer-links a:hover{ color: var(--ochre); }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position: fixed; bottom: 26px; right: 26px; z-index: 100;
+    background: var(--cactus); color: var(--plaster-soft);
+    width:60px; height:60px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+    transition: transform .2s ease;
+  }
+  .wa-float:hover{ transform: scale(1.08); }
+  .wa-float svg{ width:28px; height:28px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .fade-up{ opacity:1; transform:none; transition:none; }
+    .wa-float:hover, .btn-primary:hover{ transform:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .hero-art{ order:-1; max-width: 340px; margin: 0 auto; }
+    .about-grid, .location-grid{ grid-template-columns:1fr; }
+    .about-art{ order:-1; }
+    .service-grid{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding:0 20px; }
+    section{ padding: 76px 0; }
+    .hero-inner{ padding: 44px 20px 100px; }
+    .hero-ctas{ flex-direction:column; align-items:stretch; }
+    .hero-stats{ gap:22px; }
+    .footer-grid{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4L36 14V36H4V14L20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 36V22H26V36" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      Hotel Plaza
+    </div>
+    <div class="nav-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#reservar">Reservar</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Andalgalá · Catamarca</span>
+      <h1>Descansá a los pies<br>del <em>Aconquija</em></h1>
+      <p class="lead">Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20reservar%20una%20habitaci%C3%B3n%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#servicios" style="border-color: rgba(244,235,217,0.4); color: var(--plaster-soft);">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">Centro</div><div class="l">A metros de la plaza principal</div></div>
+        <div class="hero-stat"><div class="n">24 hs</div><div class="l">Recepción y atención</div></div>
+        <div class="hero-stat"><div class="n">100%</div><div class="l">Trato de casa de familia</div></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 320 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="230" cy="70" r="34" fill="#C98A3E" opacity="0.9"/>
+        <path d="M0 210 L60 130 L110 190 L160 90 L210 190 L260 140 L320 210 Z" fill="#5C6B47" opacity="0.55"/>
+        <path d="M0 250 L50 170 L100 230 L150 120 L200 230 L250 160 L320 250 Z" fill="#7A3620" opacity="0.9"/>
+        <rect x="120" y="230" width="80" height="70" fill="#C98A3E"/>
+        <path d="M112 230 L160 195 L208 230 Z" fill="#9C4A2E"/>
+        <rect x="145" y="255" width="16" height="45" fill="#3D2A1C"/>
+        <rect x="132" y="240" width="14" height="14" fill="#EDE0C8"/>
+        <rect x="174" y="240" width="14" height="14" fill="#EDE0C8"/>
+        <rect x="0" y="300" width="320" height="40" fill="#2B1D16"/>
+      </svg>
+    </div>
+  </div>
+
+  <svg class="mountains" viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 160 L120 70 L230 130 L360 40 L500 120 L620 60 L760 140 L900 50 L1050 130 L1200 70 L1320 120 L1440 80 L1440 160 Z" fill="#EDE0C8"/>
+  </svg>
+</section>
+
+<section class="about" id="nosotros">
+  <div class="wrap about-grid">
+    <div class="about-art fade-up">
+      <!--
+        CARRUSEL DE IMÁGENES
+        ---------------------------------------------------------------
+        Las 6 fotos viven como archivos aparte en la carpeta images/
+        (foto1.jpg a foto6.jpg), al lado de este index.html. Para que
+        se vean, esa carpeta tiene que viajar siempre junto al HTML
+        (por ejemplo, subiendo ambos juntos a Netlify Drop, o
+        arrastrando la carpeta completa del proyecto).
+
+        Para cambiar una foto: reemplazá el archivo dentro de images/
+        manteniendo el mismo nombre (foto1.jpg, foto2.jpg, etc.) — no
+        hace falta tocar el HTML ni el JS.
+      -->
+      <div class="carousel" id="about-carousel">
+        <div class="carousel-slide active">
+          <img src="images/foto1.jpg" alt="Fachada del Hotel Plaza en Andalgalá">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/foto2.jpg" alt="Comedor del hotel">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/foto3.jpg" alt="Salón de eventos del hotel">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/foto4.jpg" alt="Pileta del hotel">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/foto5.jpg" alt="Habitación matrimonial del hotel">
+        </div>
+        <div class="carousel-slide">
+          <img src="images/foto6.jpg" alt="Habitación del hotel">
+        </div>
+        <div class="carousel-dots">
+          <button class="dot active" data-index="0" aria-label="Imagen 1"></button>
+          <button class="dot" data-index="1" aria-label="Imagen 2"></button>
+          <button class="dot" data-index="2" aria-label="Imagen 3"></button>
+          <button class="dot" data-index="3" aria-label="Imagen 4"></button>
+          <button class="dot" data-index="4" aria-label="Imagen 5"></button>
+          <button class="dot" data-index="5" aria-label="Imagen 6"></button>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy fade-up">
+      <span class="section-eyebrow">Nosotros</span>
+      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);">Un hotel familiar en el corazón de Andalgalá</h2>
+      <p>Hotel Plaza funciona hace años en pleno centro de la ciudad, a pocas cuadras de la plaza principal y de los cerros que rodean el valle.</p>
+      <p>Cada habitación está pensada para que el viaje se sienta liviano: descanso tranquilo, buena atención y toda la información que necesitás para moverte por la zona.</p>
+      <p>Ya sea que vengas de paso, por trabajo o para conocer el Aconquija, acá tenés un lugar donde te esperan por tu nombre.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <span class="section-eyebrow">Servicios</span>
+      <h2>Todo lo esencial, bien resuelto</h2>
+      <p>Comodidades pensadas para que no tengas que pensar en nada más que en descansar.</p>
+    </div>
+    <div class="service-grid fade-up">
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8.5C7 3.5 17 3.5 22 8.5" stroke-linecap="round"/><path d="M5.5 12C9 8.7 15 8.7 18.5 12" stroke-linecap="round"/><path d="M9 15.5C10.5 14 13.5 14 15 15.5" stroke-linecap="round"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <h3>Wifi gratis</h3>
+        <p>Conexión disponible en todas las habitaciones y espacios comunes.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h16l-1.5 9H5.5L4 10Z" stroke-linejoin="round"/><path d="M8 10a4 4 0 0 1 8 0" /><path d="M2 10h20" stroke-linecap="round"/></svg>
+        <h3>Desayuno incluido</h3>
+        <p>Arrancá el día con un desayuno casero antes de salir a recorrer.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/><path d="M3 12h18" /></svg>
+        <h3>Estacionamiento</h3>
+        <p>Lugar privado y seguro para tu vehículo durante toda la estadía.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18" /><path d="M8 4v5" /><path d="M12 13h5" stroke-linecap="round"/></svg>
+        <h3>Habitaciones climatizadas</h3>
+        <p>Calefacción y ventilación para cualquier época del año en el valle.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <h3>Ubicación céntrica</h3>
+        <p>A metros de la plaza, bancos, comercios y paradas de colectivo.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v16" stroke-linecap="round"/><path d="M4 6h12l-2 3 2 3H4" stroke-linejoin="round"/></svg>
+        <h3>Atención personalizada</h3>
+        <p>Te ayudamos a organizar excursiones, horarios y traslados en la zona.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="ubicacion">
+  <div class="wrap location-grid">
+    <div class="fade-up">
+      <span class="section-eyebrow">Ubicación</span>
+      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);">En el centro, a un paso de todo</h2>
+      <p style="color:var(--dusk-soft); line-height:1.7; margin-bottom:8px;">Andalgalá, Catamarca — a los pies de la Sierra de Aconquija, con fácil acceso a los principales puntos de la ciudad.</p>
+    </div>
+    <div class="location-card fade-up">
+      <ul class="location-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><strong>Dirección</strong>Centro de Andalgalá, Catamarca</div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18" /><path d="M8 3v4M16 3v4" stroke-linecap="round"/></svg>
+          <div><strong>Ingreso / Egreso</strong>Coordinamos el horario que mejor te quede</div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+          <div><strong>Reservas</strong>Directo por WhatsApp, respondemos rápido</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="reservar">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <span class="section-eyebrow">Disponibilidad</span>
+      <h2>Consultá y reservá en un paso</h2>
+      <p>Elegí las fechas y el tipo de habitación. Si está disponible, te llevamos directo a WhatsApp con el mensaje ya armado.</p>
+    </div>
+
+    <div class="booking-panel fade-up">
+      <div class="booking-form">
+        <div class="field">
+          <label for="checkin">Fecha de ingreso</label>
+          <input type="date" id="checkin">
+        </div>
+        <div class="field">
+          <label for="checkout">Fecha de egreso</label>
+          <input type="date" id="checkout">
+        </div>
+        <div class="field">
+          <label for="room-type">Habitación</label>
+          <select id="room-type">
+            <option value="">Cualquiera</option>
+            <option value="individual">Individual</option>
+            <option value="doble">Doble</option>
+            <option value="matrimonial">Matrimonial</option>
+            <option value="triple">Triple</option>
+            <option value="suite">Suite</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="check-btn" type="button">Consultar disponibilidad</button>
+      </div>
+      <div class="booking-error" id="booking-error">Completá la fecha de ingreso y la fecha de egreso para consultar.</div>
+
+      <div class="booking-loading" id="booking-loading">
+        <span class="spinner"></span> Consultando disponibilidad...
+      </div>
+
+      <div class="booking-results" id="booking-results">
+        <div class="booking-results-head" id="booking-results-head"></div>
+        <div class="room-grid" id="room-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="fade-up">¿Preferís escribirnos directo?</h2>
+    <p class="fade-up">También podés mandarnos un mensaje sin pasar por el buscador de arriba. Te respondemos al toque.</p>
+    <a class="btn btn-primary fade-up" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
+      Escribir al WhatsApp del hotel
+    </a>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="wrap reviews-inner">
+    <div class="stars fade-up">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <h2 class="fade-up">¿Ya nos visitaste?</h2>
+    <p class="fade-up">Tu opinión nos importa. Contanos cómo fue tu estadía y ayudanos a mejorar para tu próxima visita.</p>
+    <div class="reviews-ctas fade-up">
+      <!--
+        Reemplazá este href por el link real de reseñas de Google del hotel.
+        Se consigue así: buscá "Hotel Plaza Andalgalá" en Google Maps,
+        entrá a la ficha del negocio → "Escribir una reseña" → copiá esa URL.
+      -->
+      <a class="btn btn-primary" href="https://g.page/r/REEMPLAZAR-CON-TU-LINK/review" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Dejar mi opinión en Google
+      </a>
+      <a class="btn btn-ghost" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20dejarles%20mi%20opini%C3%B3n%20sobre%20mi%20estad%C3%ADa%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-brand">Hotel Plaza</div>
+      <div class="footer-copy">Andalgalá, Catamarca, Argentina</div>
+    </div>
+    <div class="footer-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* =========================================================================
+     DISPONIBILIDAD DE HABITACIONES
+     -------------------------------------------------------------------------
+     Por ahora esta función usa datos hardcodeados (MOCK_ROOMS) para simular
+     lo que después va a devolver tu endpoint real.
+
+     CUANDO TENGAS EL ENDPOINT, reemplazá el contenido de getAvailability()
+     por algo así (dejá la firma de la función igual para no tocar el resto
+     del código):
+
+     async function getAvailability(checkin, checkout, roomType) {
+       const params = new URLSearchParams({ checkin, checkout, roomType });
+       const res = await fetch(`https://TU-API.com/disponibilidad?${params}`);
+       if (!res.ok) throw new Error('Error al consultar disponibilidad');
+       return await res.json();
+       // Se espera que el endpoint devuelva un array de objetos con esta forma:
+       // [{ id, name, capacity, price, available: true|false }, ...]
+     }
+  ========================================================================= */
+
+  const WHATSAPP_NUMBER = '5493835123456'; // reemplazar por el número real
+
+  const MOCK_ROOMS = [
+    { id: 'individual', name: 'Individual', capacity: 1, price: 15000, bookedRanges: [
+      { from: '2026-08-20', to: '2026-08-23' }
+    ]},
+    { id: 'doble', name: 'Doble', capacity: 2, price: 22000, bookedRanges: [
+      { from: '2026-08-25', to: '2026-08-28' }
+    ]},
+    { id: 'matrimonial', name: 'Matrimonial', capacity: 2, price: 24000, bookedRanges: [] },
+    { id: 'triple', name: 'Triple', capacity: 3, price: 30000, bookedRanges: [
+      { from: '2026-09-01', to: '2026-09-05' }
+    ]},
+    { id: 'suite', name: 'Suite', capacity: 2, price: 38000, bookedRanges: [] }
+  ];
+
+  function rangesOverlap(aStart, aEnd, bStart, bEnd) {
+    return aStart < bEnd && bStart < aEnd;
+  }
+
+  // Simula una llamada async a una API (con delay) para que el swap al
+  // endpoint real sea directo. Devuelve la misma forma que se espera de la API.
+  function getAvailability(checkin, checkout, roomType) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const inDate = new Date(checkin);
+        const outDate = new Date(checkout);
+
+        const rooms = MOCK_ROOMS
+          .filter(r => !roomType || r.id === roomType)
+          .map(r => {
+            const overlaps = r.bookedRanges.some(range =>
+              rangesOverlap(inDate, outDate, new Date(range.from), new Date(range.to))
+            );
+            return {
+              id: r.id,
+              name: r.name,
+              capacity: r.capacity,
+              price: r.price,
+              available: !overlaps
+            };
+          });
+
+        resolve(rooms);
+      }, 600); // delay simulado, sacalo cuando conectes el endpoint real
+    });
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  function buildWhatsappMessage(room, checkin, checkout) {
+    const msg = `Hola! Quiero reservar la habitación ${room.name} desde el ${formatDate(checkin)} hasta el ${formatDate(checkout)}.`;
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+
+  const checkinInput = document.getElementById('checkin');
+  const checkoutInput = document.getElementById('checkout');
+  const roomTypeSelect = document.getElementById('room-type');
+  const checkBtn = document.getElementById('check-btn');
+  const errorEl = document.getElementById('booking-error');
+  const loadingEl = document.getElementById('booking-loading');
+  const resultsEl = document.getElementById('booking-results');
+  const resultsHeadEl = document.getElementById('booking-results-head');
+  const roomGridEl = document.getElementById('room-grid');
+
+  const today = new Date().toISOString().split('T')[0];
+  checkinInput.min = today;
+  checkoutInput.min = today;
+
+  checkinInput.addEventListener('change', () => {
+    checkoutInput.min = checkinInput.value;
+  });
+
+  function renderRooms(rooms, checkin, checkout) {
+    roomGridEl.innerHTML = '';
+
+    if (rooms.length === 0) {
+      roomGridEl.innerHTML = '<p style="color:var(--dusk-soft); font-size:0.92rem;">No encontramos habitaciones para ese filtro.</p>';
+      return;
+    }
+
+    rooms.forEach(room => {
+      const card = document.createElement('div');
+      card.className = 'room-card' + (room.available ? '' : ' unavailable');
+
+      card.innerHTML = `
+        <div class="room-card-top">
+          <h4>${room.name}</h4>
+          <span class="badge ${room.available ? 'available' : 'unavailable'}">
+            ${room.available ? 'Disponible' : 'Sin disponibilidad'}
+          </span>
+        </div>
+        <p class="desc">Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.</p>
+        <div class="room-price">Desde $${room.price.toLocaleString('es-AR')} / noche</div>
+      `;
+
+      if (room.available) {
+        const link = document.createElement('a');
+        link.className = 'btn btn-primary';
+        link.href = buildWhatsappMessage(room, checkin, checkout);
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'Reservar por WhatsApp';
+        card.appendChild(link);
+      }
+
+      roomGridEl.appendChild(card);
+    });
+  }
+
+  checkBtn.addEventListener('click', async () => {
+    const checkin = checkinInput.value;
+    const checkout = checkoutInput.value;
+    const roomType = roomTypeSelect.value;
+
+    errorEl.classList.remove('show');
+    resultsEl.classList.remove('show');
+
+    if (!checkin || !checkout) {
+      errorEl.classList.add('show');
+      return;
+    }
+
+    if (checkout <= checkin) {
+      errorEl.textContent = 'La fecha de egreso tiene que ser posterior a la fecha de ingreso.';
+      errorEl.classList.add('show');
+      return;
+    }
+
+    loadingEl.classList.add('show');
+    checkBtn.disabled = true;
+
+    try {
+      const rooms = await getAvailability(checkin, checkout, roomType);
+      resultsHeadEl.textContent = `${formatDate(checkin)} — ${formatDate(checkout)}`;
+      renderRooms(rooms, checkin, checkout);
+      resultsEl.classList.add('show');
+    } catch (err) {
+      errorEl.textContent = 'Hubo un problema al consultar disponibilidad. Probá de nuevo.';
+      errorEl.classList.add('show');
+    } finally {
+      loadingEl.classList.remove('show');
+      checkBtn.disabled = false;
+    }
+  });
+
+  /* =========================================================================
+     CARRUSEL DE IMÁGENES (sección "Nosotros")
+     Cambia de slide automáticamente cada 5 segundos. Detecta solo los
+     .carousel-slide / .dot que haya dentro de #about-carousel, así que
+     podés agregar o quitar slides sin tocar este script.
+  ========================================================================= */
+  (function initCarousel() {
+    const carousel = document.getElementById('about-carousel');
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.dot');
+    let current = 0;
+    let timer = null;
+    const INTERVAL_MS = 5000;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+
+    function startAutoplay() {
+      timer = setInterval(next, INTERVAL_MS);
+    }
+
+    function resetAutoplay() {
+      clearInterval(timer);
+      startAutoplay();
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index, 10);
+        if (index !== current) {
+          goTo(index);
+          resetAutoplay();
+        }
+      });
+    });
+
+    if (slides.length > 1) startAutoplay();
+  })();
+</script>
+
+</body>
+</html>
