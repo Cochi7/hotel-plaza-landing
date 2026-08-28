@@ -291,7 +291,7 @@
     transition: border-color .2s ease;
   }
   .field input[type="date"]{
-    min-height: 47px;
+    min-height: 44px;
   }
   .field input[type="date"]::-webkit-date-and-time-value{
     text-align: left;
@@ -354,8 +354,8 @@
   }
 
   @media (max-width: 400px){
-    .field input, .field select{ font-size: 0.88rem; padding: 11px 12px; }
-    .field input[type="date"]{ min-height: 44px; }
+    .field input, .field select{ font-size: 0.88rem; padding: 9px 12px; }
+    .field input[type="date"]{ min-height: 40px; }
   }
 
   /* ---------- REVIEWS / OPINIÓN ---------- */
@@ -894,7 +894,8 @@
   /* =========================================================================
      CARRUSEL DE IMÁGENES (sección "Nosotros")
      Cambia de slide automáticamente cada 5 segundos. Detecta solo los
-     .carousel-slide / .dot que haya dentro de #about-carousel.
+     .carousel-slide / .dot que haya dentro de #about-carousel, así que
+     podés agregar o quitar slides sin tocar este script.
   ========================================================================= */
   (function initCarousel() {
     const carousel = document.getElementById('about-carousel');
@@ -904,7 +905,7 @@
     const dots = carousel.querySelectorAll('.dot');
     let current = 0;
     let timer = null;
-    const INTERVAL_MS = 5000;
+    const INTERVAL_MS = 4000;
 
     function goTo(index) {
       slides[current].classList.remove('active');
