@@ -127,6 +127,10 @@
   }
   .hero h1 em{ font-style: italic; color: var(--ochre); font-weight: 500; }
 
+  .hero-verb{
+    display: inline-block;
+  }
+
   .hero p.lead{
     font-size: 1.12rem; line-height:1.65; max-width: 46ch;
     color: rgba(244,235,217,0.82);
@@ -248,6 +252,19 @@
     border:1.5px solid var(--line);
     border-radius:20px;
     padding:36px;
+  }
+  .location-map{
+    grid-column: 1 / -1;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid var(--line);
+    aspect-ratio: 16 / 8;
+  }
+  .location-map iframe{
+    width: 100%; height: 100%; border: 0; display:block;
+  }
+  @media (max-width: 600px){
+    .location-map{ aspect-ratio: 4 / 3; }
   }
   .location-list{ list-style:none; margin-top:22px; }
   .location-list li{
@@ -450,7 +467,7 @@
   <div class="hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Andalgalá · Catamarca</span>
-      <h1>Descansá a los pies<br>del <em>Aconquija</em></h1>
+      <h1><span id="hero-verb" class="hero-verb">Descansá</span> a los pies<br>del <em>Aconquija</em></h1>
       <p class="lead">Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20reservar%20una%20habitaci%C3%B3n%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
@@ -494,7 +511,12 @@
         Las 6 fotos viven como archivos aparte en la carpeta images/
         (foto1.jpg a foto6.jpg), al lado de este index.html. Para que
         se vean, esa carpeta tiene que viajar siempre junto al HTML
-      
+        (por ejemplo, subiendo ambos juntos a Netlify Drop, o
+        arrastrando la carpeta completa del proyecto).
+
+        Para cambiar una foto: reemplazá el archivo dentro de images/
+        manteniendo el mismo nombre (foto1.jpg, foto2.jpg, etc.) — no
+        hace falta tocar el HTML ni el JS.
       -->
       <div class="carousel" id="about-carousel">
         <div class="carousel-slide active">
@@ -600,6 +622,19 @@
         </li>
       </ul>
     </div>
+    <div class="location-map fade-up">
+      <!--
+        Mapa embebido de Google, sin necesidad de API key (usa el
+        método "output=embed"). Las coordenadas son las exactas del
+        Hotel Plaza Andalgalá, tomadas de su ficha en Google Maps.
+      -->
+      <iframe
+        src="https://maps.google.com/maps?q=-27.5819962,-66.314411&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
 </section>
 
@@ -625,11 +660,14 @@
           <label for="room-type">Habitación</label>
           <select id="room-type">
             <option value="">Cualquiera</option>
-            <option value="individual">Individual</option>
+            <option value="single">Single</option>
             <option value="doble">Doble</option>
             <option value="matrimonial">Matrimonial</option>
             <option value="triple">Triple</option>
-            <option value="suite">Suite</option>
+            <option value="cuadruple">Cuádruple</option>
+            <option value="departamento">Departamento</option>
+            <option value="suite matrimonial">Suite Matrimonial</option>
+            <option value="suite triple">Suite Triple</option>
           </select>
         </div>
         <button class="btn btn-primary" id="check-btn" type="button">Consultar disponibilidad</button>
@@ -672,11 +710,24 @@
     <p class="fade-up">Tu opinión nos importa. Contanos cómo fue tu estadía y ayudanos a mejorar para tu próxima visita.</p>
     <div class="reviews-ctas fade-up">
       <!--
-        Reemplazá este href por el link real de reseñas de Google del hotel.
-        Se consigue así: buscá "Hotel Plaza Andalgalá" en Google Maps,
-        entrá a la ficha del negocio → "Escribir una reseña" → copiá esa URL.
+        Este link usa el identificador único del Hotel Plaza Andalgalá en
+        Google (el mismo que aparece en su URL de Maps, en el patrón
+        "0x...:0x..."), con un parámetro extra ("!9m1!1b1") que abre
+        directamente la pestaña de "Opiniones" en vez de la de
+        "Descripción general" — así la persona ve el botón "Escribir
+        una reseña" de entrada, sin tener que buscarlo.
+
+        Este identificador es permanente (Google lo garantiza así), o
+        sea que no hace falta rehacer este link con el tiempo.
+
+        Si algún día hay que rehacerlo de todos modos: compartir la
+        ficha del hotel desde Google Maps (botón "Compartir" → "Copiar
+        enlace"), abrir ese link y copiar el texto que aparece entre
+        "!1s" y el siguiente "!" en la URL resultante (el patrón
+        "0x...:0x..."), y pegarlo en este molde:
+        https://www.google.com/maps/place//data=!4m4!3m3!1sAQUI_EL_ID!9m1!1b1
       -->
-      <a class="btn btn-primary" href="https://g.page/r/REEMPLAZAR-CON-TU-LINK/review" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://www.google.com/maps/place//data=!4m4!3m3!1s0x9421140eab5ba187:0xe31b1ecc2a6dce32!9m1!1b1" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         Dejar mi opinión en Google
       </a>
@@ -720,69 +771,72 @@
   /* =========================================================================
      DISPONIBILIDAD DE HABITACIONES
      -------------------------------------------------------------------------
-     Por ahora esta función usa datos hardcodeados (MOCK_ROOMS) para simular
-     lo que después va a devolver tu endpoint real.
+     Conectado al endpoint real de tu sistema de gestión:
 
-     CUANDO TENGAS EL ENDPOINT, reemplazá el contenido de getAvailability()
-     por algo así (dejá la firma de la función igual para no tocar el resto
-     del código):
+       POST http://localhost:5257/api/reservas/consultar-disponibilidad
+       Body: { "FechaIngreso": "2026-08-25", "FechaEgreso": "2026-08-28" }
 
-     async function getAvailability(checkin, checkout, roomType) {
-       const params = new URLSearchParams({ checkin, checkout, roomType });
-       const res = await fetch(`https://TU-API.com/disponibilidad?${params}`);
-       if (!res.ok) throw new Error('Error al consultar disponibilidad');
-       return await res.json();
-       // Se espera que el endpoint devuelva un array de objetos con esta forma:
-       // [{ id, name, capacity, price, available: true|false }, ...]
-     }
+     ⚠️ "localhost" solo funciona en la computadora de tu compañero mientras
+     prueba el backend. Cuando lo suban a un hosting real (Azure, Railway,
+     Render, VPS, etc.) hay que cambiar API_BASE_URL de acá abajo por la
+     URL pública, por ejemplo: "https://api.hotelplaza.com".
+
+     El endpoint devuelve un array con SOLO las habitaciones disponibles
+     en esas fechas (no manda un campo "disponible: true/false" porque las
+     que no están libres directamente no vienen en la lista), con esta forma:
+
+       [{ "id":1, "piso":2, "numero":"204", "nombre":"Doble",
+          "capacidad":2, "precioPorNoche":22000, "descripcion":"..." }]
+
+     El filtro por tipo de habitación (Single/Doble/Matrimonial/Triple/
+     Cuádruple/Departamento/Suite Matrimonial/Suite Triple) NO lo hace
+     el backend — se hace acá en el navegador, comparando por igualdad
+     exacta (sin importar mayúsculas) el campo "nombre" contra lo elegido
+     en el selector. Usamos igualdad exacta y no "contiene" porque nombres
+     como "Triple" y "Suite Triple" comparten palabras, y con coincidencia
+     parcial se mezclarían entre sí.
+
+     SUPUESTO A CONFIRMAR con tu compañero: asumimos que "nombre" es el
+     TIPO/categoría de habitación (ej: "Doble"), no un nombre único por
+     habitación individual. Si es distinto, avisame y ajusto el filtro.
   ========================================================================= */
 
   const WHATSAPP_NUMBER = '5493835123456'; // reemplazar por el número real
+  const API_BASE_URL = 'http://localhost:5257'; // reemplazar por la URL pública cuando esté en producción
 
-  const MOCK_ROOMS = [
-    { id: 'individual', name: 'Individual', capacity: 1, price: 15000, bookedRanges: [
-      { from: '2026-08-20', to: '2026-08-23' }
-    ]},
-    { id: 'doble', name: 'Doble', capacity: 2, price: 22000, bookedRanges: [
-      { from: '2026-08-25', to: '2026-08-28' }
-    ]},
-    { id: 'matrimonial', name: 'Matrimonial', capacity: 2, price: 24000, bookedRanges: [] },
-    { id: 'triple', name: 'Triple', capacity: 3, price: 30000, bookedRanges: [
-      { from: '2026-09-01', to: '2026-09-05' }
-    ]},
-    { id: 'suite', name: 'Suite', capacity: 2, price: 38000, bookedRanges: [] }
-  ];
-
-  function rangesOverlap(aStart, aEnd, bStart, bEnd) {
-    return aStart < bEnd && bStart < aEnd;
-  }
-
-  // Simula una llamada async a una API (con delay) para que el swap al
-  // endpoint real sea directo. Devuelve la misma forma que se espera de la API.
-  function getAvailability(checkin, checkout, roomType) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const inDate = new Date(checkin);
-        const outDate = new Date(checkout);
-
-        const rooms = MOCK_ROOMS
-          .filter(r => !roomType || r.id === roomType)
-          .map(r => {
-            const overlaps = r.bookedRanges.some(range =>
-              rangesOverlap(inDate, outDate, new Date(range.from), new Date(range.to))
-            );
-            return {
-              id: r.id,
-              name: r.name,
-              capacity: r.capacity,
-              price: r.price,
-              available: !overlaps
-            };
-          });
-
-        resolve(rooms);
-      }, 600); // delay simulado, sacalo cuando conectes el endpoint real
+  async function getAvailability(checkin, checkout, roomType) {
+    const res = await fetch(`${API_BASE_URL}/api/reservas/consultar-disponibilidad`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        FechaIngreso: checkin,
+        FechaEgreso: checkout
+      })
     });
+
+    if (!res.ok) throw new Error('Error al consultar disponibilidad');
+
+    const data = await res.json();
+
+    // Normalizamos los nombres de campo del backend (nombre, precioPorNoche,
+    // capacidad, etc.) a los que usa el resto del código (name, price, capacity).
+    let rooms = data.map(r => ({
+      id: r.id ?? r.Id,
+      name: r.nombre ?? r.Nombre,
+      capacity: r.capacidad ?? r.Capacidad,
+      price: r.precioPorNoche ?? r.PrecioPorNoche,
+      piso: r.piso ?? r.Piso,
+      numero: r.numero ?? r.Numero,
+      description: r.descripcion ?? r.Descripcion,
+      available: true // el backend ya solo devuelve las habitaciones libres
+    }));
+
+    // Filtro por tipo de habitación, hecho acá porque el backend no lo soporta.
+    if (roomType) {
+      rooms = rooms.filter(r => (r.name || '').trim().toLowerCase() === roomType.trim().toLowerCase());
+    }
+
+    return rooms;
   }
 
   function formatDate(dateStr) {
@@ -791,7 +845,8 @@
   }
 
   function buildWhatsappMessage(room, checkin, checkout) {
-    const msg = `Hola! Quiero reservar la habitación ${room.name} desde el ${formatDate(checkin)} hasta el ${formatDate(checkout)}.`;
+    const habitacion = room.numero ? `${room.name} (hab. ${room.numero})` : room.name;
+    const msg = `Hola! Quiero reservar la habitación ${habitacion} desde el ${formatDate(checkin)} hasta el ${formatDate(checkout)}.`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   }
 
@@ -817,34 +872,34 @@
     roomGridEl.innerHTML = '';
 
     if (rooms.length === 0) {
-      roomGridEl.innerHTML = '<p style="color:var(--dusk-soft); font-size:0.92rem;">No encontramos habitaciones para ese filtro.</p>';
+      roomGridEl.innerHTML = '<p style="color:var(--dusk-soft); font-size:0.92rem;">No encontramos habitaciones disponibles para esas fechas.</p>';
       return;
     }
 
     rooms.forEach(room => {
       const card = document.createElement('div');
-      card.className = 'room-card' + (room.available ? '' : ' unavailable');
+      card.className = 'room-card';
+
+      const detalle = room.numero
+        ? `Habitación ${room.numero}${room.piso ? ' · Piso ' + room.piso : ''} · Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.`
+        : `Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.`;
 
       card.innerHTML = `
         <div class="room-card-top">
           <h4>${room.name}</h4>
-          <span class="badge ${room.available ? 'available' : 'unavailable'}">
-            ${room.available ? 'Disponible' : 'Sin disponibilidad'}
-          </span>
+          <span class="badge available">Disponible</span>
         </div>
-        <p class="desc">Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.</p>
-        <div class="room-price">Desde $${room.price.toLocaleString('es-AR')} / noche</div>
+        <p class="desc">${detalle}</p>
+        <div class="room-price">Desde $${Number(room.price).toLocaleString('es-AR')} / noche</div>
       `;
 
-      if (room.available) {
-        const link = document.createElement('a');
-        link.className = 'btn btn-primary';
-        link.href = buildWhatsappMessage(room, checkin, checkout);
-        link.target = '_blank';
-        link.rel = 'noopener';
-        link.textContent = 'Reservar por WhatsApp';
-        card.appendChild(link);
-      }
+      const link = document.createElement('a');
+      link.className = 'btn btn-primary';
+      link.href = buildWhatsappMessage(room, checkin, checkout);
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'Reservar por WhatsApp';
+      card.appendChild(link);
 
       roomGridEl.appendChild(card);
     });
@@ -934,6 +989,59 @@
     });
 
     if (slides.length > 1) startAutoplay();
+  })();
+
+  /* =========================================================================
+     PALABRA DINÁMICA DEL TÍTULO PRINCIPAL
+     Efecto "máquina de escribir": tipea la palabra letra por letra, la
+     deja un rato en pantalla, la borra letra por letra, y pasa a la
+     siguiente. Para agregar/quitar palabras, editá el array HERO_VERBS.
+     Para ajustar la velocidad, tocá TYPE_SPEED_MS, ERASE_SPEED_MS y
+     PAUSE_MS de abajo.
+  ========================================================================= */
+  (function initHeroVerb() {
+    const el = document.getElementById('hero-verb');
+    if (!el) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // dejamos la palabra fija, sin animar
+
+    const HERO_VERBS = ['Descansá', 'Relajate', 'Desconectate', 'Hospedate', 'Renovate'];
+    const TYPE_SPEED_MS = 130;   // cuánto tarda en escribir cada letra
+    const ERASE_SPEED_MS = 90;   // cuánto tarda en borrar cada letra
+    const PAUSE_MS = 2200;       // cuánto queda la palabra completa antes de borrarse
+
+    let wordIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+      const word = HERO_VERBS[wordIndex];
+      charIndex++;
+      el.textContent = word.slice(0, charIndex);
+
+      if (charIndex < word.length) {
+        setTimeout(type, TYPE_SPEED_MS);
+      } else {
+        setTimeout(erase, PAUSE_MS);
+      }
+    }
+
+    function erase() {
+      const word = HERO_VERBS[wordIndex];
+      charIndex--;
+      el.textContent = word.slice(0, charIndex);
+
+      if (charIndex > 0) {
+        setTimeout(erase, ERASE_SPEED_MS);
+      } else {
+        wordIndex = (wordIndex + 1) % HERO_VERBS.length;
+        setTimeout(type, TYPE_SPEED_MS);
+      }
+    }
+
+    charIndex = HERO_VERBS[0].length;
+    el.textContent = HERO_VERBS[0];
+    setTimeout(erase, PAUSE_MS);
   })();
 </script>
 
