@@ -469,13 +469,13 @@
 
 <header>
   <nav class="wrap">
-    <div class="brand">
+    <a href="#" class="brand">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 4L36 14V36H4V14L20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
         <path d="M14 36V22H26V36" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
       </svg>
       Hotel Plaza
-    </div>
+    </a>
     <div class="nav-links">
       <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
       <a href="#servicios" data-i18n="nav_services">Servicios</a>
@@ -1148,6 +1148,10 @@
        "href" con el mensaje pre-armado en el idioma correspondiente.
      - Recuerda la elección del visitante en este navegador (localStorage),
        así que si vuelve a entrar más tarde ve el mismo idioma que eligió.
+
+     Para agregar una palabra nueva a traducir en el futuro: agregarle
+     data-i18n="una_clave_nueva" al elemento en el HTML, y sumar esa
+     misma clave con su texto en español e inglés acá abajo.
   ========================================================================= */
   const TRANSLATIONS = {
     nav_about: { es: 'Nosotros', en: 'About' },
