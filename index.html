@@ -98,6 +98,28 @@
   .nav-cta{ display:flex; }
   .menu-toggle{ display:none; }
 
+  .lang-toggle{
+    display:flex; align-items:center; gap:2px;
+    background: rgba(43,29,22,0.08);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .lang-toggle button{
+    display:flex; align-items:center; gap:6px;
+    border:none; background:transparent; cursor:pointer;
+    padding: 6px 13px; border-radius: 999px;
+    font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.82rem;
+    color: var(--dusk-soft);
+    letter-spacing: 0.02em;
+    transition: background .2s ease, color .2s ease;
+  }
+  .lang-toggle .flag{
+    width: 18px; height: auto; border-radius: 2px; flex-shrink:0;
+  }
+  .lang-toggle button.active{
+    background: var(--clay); color: var(--plaster-soft);
+  }
+
   /* ---------- HERO ---------- */
   .hero{
     position: relative;
@@ -455,10 +477,29 @@
       Hotel Plaza
     </div>
     <div class="nav-links">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#ubicacion">Ubicación</a>
-      <a href="#reservar">Reservar</a>
+      <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+      <a href="#servicios" data-i18n="nav_services">Servicios</a>
+      <a href="#ubicacion" data-i18n="nav_location">Ubicación</a>
+      <a href="#reservar" data-i18n="nav_book">Reservar</a>
+    </div>
+    <div class="lang-toggle">
+      <button type="button" data-lang-btn="es" class="active">
+        <svg class="flag" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg">
+          <rect width="20" height="14" fill="#AA151B"/>
+          <rect y="3.5" width="20" height="7" fill="#F1BF00"/>
+        </svg>
+        ES
+      </button>
+      <button type="button" data-lang-btn="en">
+        <svg class="flag" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg">
+          <rect width="20" height="14" fill="#00247D"/>
+          <path d="M0 0L20 14M20 0L0 14" stroke="#FFFFFF" stroke-width="2.6"/>
+          <path d="M0 0L20 14M20 0L0 14" stroke="#CF142B" stroke-width="1.3"/>
+          <path d="M10 0V14M0 7H20" stroke="#FFFFFF" stroke-width="4.6"/>
+          <path d="M10 0V14M0 7H20" stroke="#CF142B" stroke-width="2.2"/>
+        </svg>
+        EN
+      </button>
     </div>
   </nav>
 </header>
@@ -467,19 +508,19 @@
   <div class="hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Andalgalá · Catamarca</span>
-      <h1><span id="hero-verb" class="hero-verb">Descansá</span> a los<br>pies del <em>Aconquija</em></h1>
-      <p class="lead">Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.</p>
+      <h1><span id="hero-verb" class="hero-verb">Descansá</span> <span data-i18n="hero_mid">a los</span><br><span data-i18n="hero_end">pies del</span> <em>Aconquija</em></h1>
+      <p class="lead" data-i18n="hero_lead">Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20reservar%20una%20habitaci%C3%B3n%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+        <a class="btn btn-primary" data-wa data-wa-es="Hola, quiero reservar una habitación en Hotel Plaza" data-wa-en="Hi, I'd like to book a room at Hotel Plaza" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20reservar%20una%20habitaci%C3%B3n%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
-          Reservar por WhatsApp
+          <span data-i18n="btn_reserve_wa">Reservar por WhatsApp</span>
         </a>
-        <a class="btn btn-ghost" href="#servicios" style="border-color: rgba(244,235,217,0.4); color: var(--plaster-soft);">Ver servicios</a>
+        <a class="btn btn-ghost" href="#servicios" data-i18n="btn_see_services" style="border-color: rgba(244,235,217,0.4); color: var(--plaster-soft);">Ver servicios</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="n">Centro</div><div class="l">A metros de la plaza principal</div></div>
-        <div class="hero-stat"><div class="n">24 hs</div><div class="l">Recepción y atención</div></div>
-        <div class="hero-stat"><div class="n">100%</div><div class="l">Trato de casa de familia</div></div>
+        <div class="hero-stat"><div class="n" data-i18n="stat1_n">Centro</div><div class="l" data-i18n="stat1_l">A metros de la plaza principal</div></div>
+        <div class="hero-stat"><div class="n">24 hs</div><div class="l" data-i18n="stat2_l">Recepción y atención</div></div>
+        <div class="hero-stat"><div class="n">100%</div><div class="l" data-i18n="stat3_l">Trato de casa de familia</div></div>
       </div>
     </div>
     <div class="hero-art">
@@ -520,22 +561,22 @@
       -->
       <div class="carousel" id="about-carousel">
         <div class="carousel-slide active">
-          <img src="images/foto1.jpg" alt="Fachada del Hotel Plaza en Andalgalá">
+          <img src="images/foto1.jpg" data-alt-es="Fachada del Hotel Plaza en Andalgalá" data-alt-en="Front of Hotel Plaza in Andalgalá" alt="Fachada del Hotel Plaza en Andalgalá">
         </div>
         <div class="carousel-slide">
-          <img src="images/foto2.jpg" alt="Comedor del hotel">
+          <img src="images/foto2.jpg" data-alt-es="Comedor del hotel" data-alt-en="Hotel dining room" alt="Comedor del hotel">
         </div>
         <div class="carousel-slide">
-          <img src="images/foto3.jpg" alt="Salón de eventos del hotel">
+          <img src="images/foto3.jpg" data-alt-es="Salón de eventos del hotel" data-alt-en="Hotel event hall" alt="Salón de eventos del hotel">
         </div>
         <div class="carousel-slide">
-          <img src="images/foto4.jpg" alt="Pileta del hotel">
+          <img src="images/foto4.jpg" data-alt-es="Pileta del hotel" data-alt-en="Hotel pool" alt="Pileta del hotel">
         </div>
         <div class="carousel-slide">
-          <img src="images/foto5.jpg" alt="Habitación matrimonial del hotel">
+          <img src="images/foto5.jpg" data-alt-es="Habitación matrimonial del hotel" data-alt-en="Hotel double room" alt="Habitación matrimonial del hotel">
         </div>
         <div class="carousel-slide">
-          <img src="images/foto6.jpg" alt="Habitación del hotel">
+          <img src="images/foto6.jpg" data-alt-es="Habitación del hotel" data-alt-en="Hotel room" alt="Habitación del hotel">
         </div>
         <div class="carousel-dots">
           <button class="dot active" data-index="0" aria-label="Imagen 1"></button>
@@ -548,11 +589,11 @@
       </div>
     </div>
     <div class="about-copy fade-up">
-      <span class="section-eyebrow">Nosotros</span>
-      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);">Un hotel familiar en el corazón de Andalgalá</h2>
-      <p>Hotel Plaza funciona hace años en pleno centro de la ciudad, a pocas cuadras de la plaza principal y de los cerros que rodean el valle.</p>
-      <p>Cada habitación está pensada para que el viaje se sienta liviano: descanso tranquilo, buena atención y toda la información que necesitás para moverte por la zona.</p>
-      <p>Ya sea que vengas de paso, por trabajo o para conocer el Aconquija, acá tenés un lugar donde te esperan por tu nombre.</p>
+      <span class="section-eyebrow" data-i18n="about_eyebrow">Nosotros</span>
+      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);" data-i18n="about_title">Un hotel familiar en el corazón de Andalgalá</h2>
+      <p data-i18n="about_p1">Hotel Plaza funciona hace años en pleno centro de la ciudad, a pocas cuadras de la plaza principal y de los cerros que rodean el valle.</p>
+      <p data-i18n="about_p2">Cada habitación está pensada para que el viaje se sienta liviano: descanso tranquilo, buena atención y toda la información que necesitás para moverte por la zona.</p>
+      <p data-i18n="about_p3">Ya sea que vengas de paso, por trabajo o para conocer el Aconquija, acá tenés un lugar donde te esperan por tu nombre.</p>
     </div>
   </div>
 </section>
@@ -560,40 +601,40 @@
 <section class="services" id="servicios">
   <div class="wrap">
     <div class="section-head fade-up">
-      <span class="section-eyebrow">Servicios</span>
-      <h2>Todo lo esencial, bien resuelto</h2>
-      <p>Comodidades pensadas para que no tengas que pensar en nada más que en descansar.</p>
+      <span class="section-eyebrow" data-i18n="services_eyebrow">Servicios</span>
+      <h2 data-i18n="services_title">Todo lo esencial, bien resuelto</h2>
+      <p data-i18n="services_lead">Comodidades pensadas para que no tengas que pensar en nada más que en descansar.</p>
     </div>
     <div class="service-grid fade-up">
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8.5C7 3.5 17 3.5 22 8.5" stroke-linecap="round"/><path d="M5.5 12C9 8.7 15 8.7 18.5 12" stroke-linecap="round"/><path d="M9 15.5C10.5 14 13.5 14 15 15.5" stroke-linecap="round"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
-        <h3>Wifi gratis</h3>
-        <p>Conexión disponible en todas las habitaciones y espacios comunes.</p>
+        <h3 data-i18n="svc1_title">Wifi gratis</h3>
+        <p data-i18n="svc1_desc">Conexión disponible en todas las habitaciones y espacios comunes.</p>
       </div>
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h16l-1.5 9H5.5L4 10Z" stroke-linejoin="round"/><path d="M8 10a4 4 0 0 1 8 0" /><path d="M2 10h20" stroke-linecap="round"/></svg>
-        <h3>Desayuno incluido</h3>
-        <p>Arrancá el día con un desayuno casero antes de salir a recorrer.</p>
+        <h3 data-i18n="svc2_title">Desayuno incluido</h3>
+        <p data-i18n="svc2_desc">Arrancá el día con un desayuno casero antes de salir a recorrer.</p>
       </div>
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/><path d="M3 12h18" /></svg>
-        <h3>Estacionamiento</h3>
-        <p>Lugar privado y seguro para tu vehículo durante toda la estadía.</p>
+        <h3 data-i18n="svc3_title">Estacionamiento</h3>
+        <p data-i18n="svc3_desc">Lugar privado y seguro para tu vehículo durante toda la estadía.</p>
       </div>
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18" /><path d="M8 4v5" /><path d="M12 13h5" stroke-linecap="round"/></svg>
-        <h3>Habitaciones climatizadas</h3>
-        <p>Calefacción y ventilación para cualquier época del año en el valle.</p>
+        <h3 data-i18n="svc4_title">Habitaciones climatizadas</h3>
+        <p data-i18n="svc4_desc">Calefacción y ventilación para cualquier época del año en el valle.</p>
       </div>
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
-        <h3>Ubicación céntrica</h3>
-        <p>A metros de la plaza, bancos, comercios y paradas de colectivo.</p>
+        <h3 data-i18n="svc5_title">Ubicación céntrica</h3>
+        <p data-i18n="svc5_desc">A metros de la plaza, bancos, comercios y paradas de colectivo.</p>
       </div>
       <div class="service-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v16" stroke-linecap="round"/><path d="M4 6h12l-2 3 2 3H4" stroke-linejoin="round"/></svg>
-        <h3>Atención personalizada</h3>
-        <p>Te ayudamos a organizar excursiones, horarios y traslados en la zona.</p>
+        <h3 data-i18n="svc6_title">Atención personalizada</h3>
+        <p data-i18n="svc6_desc">Te ayudamos a organizar excursiones, horarios y traslados en la zona.</p>
       </div>
     </div>
   </div>
@@ -602,23 +643,23 @@
 <section class="location" id="ubicacion">
   <div class="wrap location-grid">
     <div class="fade-up">
-      <span class="section-eyebrow">Ubicación</span>
-      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);">En el centro, a un paso de todo</h2>
-      <p style="color:var(--dusk-soft); line-height:1.7; margin-bottom:8px;">Andalgalá, Catamarca — a los pies de la Sierra de Aconquija, con fácil acceso a los principales puntos de la ciudad.</p>
+      <span class="section-eyebrow" data-i18n="location_eyebrow">Ubicación</span>
+      <h2 style="margin-bottom:22px; font-size: clamp(1.8rem,3vw,2.4rem);" data-i18n="location_title">En el centro, a un paso de todo</h2>
+      <p style="color:var(--dusk-soft); line-height:1.7; margin-bottom:8px;" data-i18n="location_lead">Andalgalá, Catamarca — a los pies de la Sierra de Aconquija, con fácil acceso a los principales puntos de la ciudad.</p>
     </div>
     <div class="location-card fade-up">
       <ul class="location-list">
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <div><strong>Dirección</strong>Centro de Andalgalá, Catamarca</div>
+          <div><strong data-i18n="loc_addr_label">Dirección</strong><span data-i18n="loc_addr_value">Centro de Andalgalá, Catamarca</span></div>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18" /><path d="M8 3v4M16 3v4" stroke-linecap="round"/></svg>
-          <div><strong>Ingreso / Egreso</strong>Coordinamos el horario que mejor te quede</div>
+          <div><strong data-i18n="loc_hours_label">Ingreso / Egreso</strong><span data-i18n="loc_hours_value">Coordinamos el horario que mejor te quede</span></div>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
-          <div><strong>Reservas</strong>Directo por WhatsApp, respondemos rápido</div>
+          <div><strong data-i18n="loc_res_label">Reservas</strong><span data-i18n="loc_res_value">Directo por WhatsApp, respondemos rápido</span></div>
         </li>
       </ul>
     </div>
@@ -641,41 +682,41 @@
 <section class="booking" id="reservar">
   <div class="wrap">
     <div class="section-head fade-up">
-      <span class="section-eyebrow">Disponibilidad</span>
-      <h2>Consultá y reservá en un paso</h2>
-      <p>Elegí las fechas y el tipo de habitación. Si está disponible, te llevamos directo a WhatsApp con el mensaje ya armado.</p>
+      <span class="section-eyebrow" data-i18n="booking_eyebrow">Disponibilidad</span>
+      <h2 data-i18n="booking_title">Consultá y reservá en un paso</h2>
+      <p data-i18n="booking_lead">Elegí las fechas y el tipo de habitación. Si está disponible, te llevamos directo a WhatsApp con el mensaje ya armado.</p>
     </div>
 
     <div class="booking-panel fade-up">
       <div class="booking-form">
         <div class="field">
-          <label for="checkin">Fecha de ingreso</label>
+          <label for="checkin" data-i18n="label_checkin">Fecha de ingreso</label>
           <input type="date" id="checkin">
         </div>
         <div class="field">
-          <label for="checkout">Fecha de egreso</label>
+          <label for="checkout" data-i18n="label_checkout">Fecha de egreso</label>
           <input type="date" id="checkout">
         </div>
         <div class="field">
-          <label for="room-type">Habitación</label>
+          <label for="room-type" data-i18n="label_roomtype">Habitación</label>
           <select id="room-type">
-            <option value="">Cualquiera</option>
-            <option value="single">Single</option>
-            <option value="doble">Doble</option>
-            <option value="matrimonial">Matrimonial</option>
-            <option value="triple">Triple</option>
-            <option value="cuadruple">Cuádruple</option>
-            <option value="departamento">Departamento</option>
-            <option value="suite matrimonial">Suite Matrimonial</option>
-            <option value="suite triple">Suite Triple</option>
+            <option value="" data-i18n="opt_any">Cualquiera</option>
+            <option value="single" data-i18n="opt_single">Single</option>
+            <option value="doble" data-i18n="opt_doble">Doble</option>
+            <option value="matrimonial" data-i18n="opt_matrimonial">Matrimonial</option>
+            <option value="triple" data-i18n="opt_triple">Triple</option>
+            <option value="cuadruple" data-i18n="opt_cuadruple">Cuádruple</option>
+            <option value="departamento" data-i18n="opt_departamento">Departamento</option>
+            <option value="suite matrimonial" data-i18n="opt_suite_mat">Suite Matrimonial</option>
+            <option value="suite triple" data-i18n="opt_suite_triple">Suite Triple</option>
           </select>
         </div>
-        <button class="btn btn-primary" id="check-btn" type="button">Consultar disponibilidad</button>
+        <button class="btn btn-primary" id="check-btn" type="button" data-i18n="btn_check">Consultar disponibilidad</button>
       </div>
-      <div class="booking-error" id="booking-error">Completá la fecha de ingreso y la fecha de egreso para consultar.</div>
+      <div class="booking-error" id="booking-error" data-i18n="error_incomplete">Completá la fecha de ingreso y la fecha de egreso para consultar.</div>
 
       <div class="booking-loading" id="booking-loading">
-        <span class="spinner"></span> Consultando disponibilidad...
+        <span class="spinner"></span> <span data-i18n="loading_text">Consultando disponibilidad...</span>
       </div>
 
       <div class="booking-results" id="booking-results">
@@ -688,11 +729,11 @@
 
 <section class="cta-band">
   <div class="wrap">
-    <h2 class="fade-up">¿Preferís escribirnos directo?</h2>
-    <p class="fade-up">También podés mandarnos un mensaje sin pasar por el buscador de arriba. Te respondemos enseguida.</p>
-    <a class="btn btn-primary fade-up" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+    <h2 class="fade-up" data-i18n="cta_title">¿Preferís escribirnos directo?</h2>
+    <p class="fade-up" data-i18n="cta_lead">También podés mandarnos un mensaje sin pasar por el buscador de arriba. Te respondemos enseguida.</p>
+    <a class="btn btn-primary fade-up" data-wa data-wa-es="Hola, quiero consultar disponibilidad en Hotel Plaza" data-wa-en="Hi, I'd like to check availability at Hotel Plaza" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
-      Escribir al WhatsApp del hotel
+      <span data-i18n="cta_btn">Escribir al WhatsApp del hotel</span>
     </a>
   </div>
 </section>
@@ -706,8 +747,8 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     </div>
-    <h2 class="fade-up">¿Ya nos visitaste?</h2>
-    <p class="fade-up">Tu opinión nos importa. Contanos cómo fue tu estadía y ayudanos a mejorar para tu próxima visita.</p>
+    <h2 class="fade-up" data-i18n="reviews_title">¿Ya nos visitaste?</h2>
+    <p class="fade-up" data-i18n="reviews_lead">Tu opinión nos importa. Contanos cómo fue tu estadía y ayudanos a mejorar para tu próxima visita.</p>
     <div class="reviews-ctas fade-up">
       <!--
         Este link usa el identificador único del Hotel Plaza Andalgalá en
@@ -729,10 +770,10 @@
       -->
       <a class="btn btn-primary" href="https://www.google.com/maps/place//data=!4m4!3m3!1s0x9421140eab5ba187:0xe31b1ecc2a6dce32!9m1!1b1" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Dejar mi opinión en Google
+        <span data-i18n="reviews_btn_google">Dejar mi opinión en Google</span>
       </a>
-      <a class="btn btn-ghost" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20dejarles%20mi%20opini%C3%B3n%20sobre%20mi%20estad%C3%ADa%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
-        Escribir por WhatsApp
+      <a class="btn btn-ghost" data-wa data-wa-es="Hola, quiero dejarles mi opinión sobre mi estadía en Hotel Plaza" data-wa-en="Hi, I'd like to leave feedback about my stay at Hotel Plaza" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20dejarles%20mi%20opini%C3%B3n%20sobre%20mi%20estad%C3%ADa%20en%20Hotel%20Plaza" target="_blank" rel="noopener">
+        <span data-i18n="reviews_btn_wa">Escribir por WhatsApp</span>
       </a>
     </div>
   </div>
@@ -745,14 +786,14 @@
       <div class="footer-copy">Andalgalá, Catamarca, Argentina</div>
     </div>
     <div class="footer-links">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#ubicacion">Ubicación</a>
+      <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+      <a href="#servicios" data-i18n="nav_services">Servicios</a>
+      <a href="#ubicacion" data-i18n="nav_location">Ubicación</a>
     </div>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+<a class="wa-float" data-wa data-wa-es="Hola, quiero consultar disponibilidad en Hotel Plaza" data-wa-en="Hi, I'd like to check availability at Hotel Plaza" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
 </a>
 
@@ -841,12 +882,18 @@
 
   function formatDate(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const locale = window.currentLang === 'en' ? 'en-US' : 'es-AR';
+    return d.toLocaleDateString(locale, { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
 
   function buildWhatsappMessage(room, checkin, checkout) {
-    const habitacion = room.numero ? `${room.name} (hab. ${room.numero})` : room.name;
-    const msg = `Hola! Quiero reservar la habitación ${habitacion} desde el ${formatDate(checkin)} hasta el ${formatDate(checkout)}.`;
+    const isEn = window.currentLang === 'en';
+    const habitacion = room.numero
+      ? `${room.name} (${isEn ? 'room' : 'hab.'} ${room.numero})`
+      : room.name;
+    const msg = isEn
+      ? `Hi! I'd like to book the ${habitacion} room from ${formatDate(checkin)} to ${formatDate(checkout)}.`
+      : `Hola! Quiero reservar la habitación ${habitacion} desde el ${formatDate(checkin)} hasta el ${formatDate(checkout)}.`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   }
 
@@ -870,9 +917,13 @@
 
   function renderRooms(rooms, checkin, checkout) {
     roomGridEl.innerHTML = '';
+    const isEn = window.currentLang === 'en';
 
     if (rooms.length === 0) {
-      roomGridEl.innerHTML = '<p style="color:var(--dusk-soft); font-size:0.92rem;">No encontramos habitaciones disponibles para esas fechas.</p>';
+      const msg = isEn
+        ? "We couldn't find available rooms for those dates."
+        : 'No encontramos habitaciones disponibles para esas fechas.';
+      roomGridEl.innerHTML = `<p style="color:var(--dusk-soft); font-size:0.92rem;">${msg}</p>`;
       return;
     }
 
@@ -880,17 +931,30 @@
       const card = document.createElement('div');
       card.className = 'room-card';
 
+      const guestWord = isEn
+        ? (room.capacity === 1 ? 'guest' : 'guests')
+        : (room.capacity === 1 ? 'persona' : 'personas');
+
       const detalle = room.numero
-        ? `Habitación ${room.numero}${room.piso ? ' · Piso ' + room.piso : ''} · Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.`
-        : `Capacidad para ${room.capacity} ${room.capacity === 1 ? 'persona' : 'personas'}.`;
+        ? (isEn
+            ? `Room ${room.numero}${room.piso ? ' · Floor ' + room.piso : ''} · Fits ${room.capacity} ${guestWord}.`
+            : `Habitación ${room.numero}${room.piso ? ' · Piso ' + room.piso : ''} · Capacidad para ${room.capacity} ${guestWord}.`)
+        : (isEn
+            ? `Fits ${room.capacity} ${guestWord}.`
+            : `Capacidad para ${room.capacity} ${guestWord}.`);
+
+      const badgeText = isEn ? 'Available' : 'Disponible';
+      const pricePrefix = isEn ? 'From $' : 'Desde $';
+      const priceSuffix = isEn ? '/ night' : '/ noche';
+      const priceLocale = isEn ? 'en-US' : 'es-AR';
 
       card.innerHTML = `
         <div class="room-card-top">
           <h4>${room.name}</h4>
-          <span class="badge available">Disponible</span>
+          <span class="badge available">${badgeText}</span>
         </div>
         <p class="desc">${detalle}</p>
-        <div class="room-price">Desde $${Number(room.price).toLocaleString('es-AR')} / noche</div>
+        <div class="room-price">${pricePrefix}${Number(room.price).toLocaleString(priceLocale)} ${priceSuffix}</div>
       `;
 
       const link = document.createElement('a');
@@ -898,7 +962,7 @@
       link.href = buildWhatsappMessage(room, checkin, checkout);
       link.target = '_blank';
       link.rel = 'noopener';
-      link.textContent = 'Reservar por WhatsApp';
+      link.textContent = isEn ? 'Book via WhatsApp' : 'Reservar por WhatsApp';
       card.appendChild(link);
 
       roomGridEl.appendChild(card);
@@ -909,17 +973,23 @@
     const checkin = checkinInput.value;
     const checkout = checkoutInput.value;
     const roomType = roomTypeSelect.value;
+    const isEn = window.currentLang === 'en';
 
     errorEl.classList.remove('show');
     resultsEl.classList.remove('show');
 
     if (!checkin || !checkout) {
+      errorEl.textContent = isEn
+        ? 'Fill in the check-in and check-out dates to search.'
+        : 'Completá la fecha de ingreso y la fecha de egreso para consultar.';
       errorEl.classList.add('show');
       return;
     }
 
     if (checkout <= checkin) {
-      errorEl.textContent = 'La fecha de egreso tiene que ser posterior a la fecha de ingreso.';
+      errorEl.textContent = isEn
+        ? 'The check-out date must be after the check-in date.'
+        : 'La fecha de egreso tiene que ser posterior a la fecha de ingreso.';
       errorEl.classList.add('show');
       return;
     }
@@ -933,7 +1003,9 @@
       renderRooms(rooms, checkin, checkout);
       resultsEl.classList.add('show');
     } catch (err) {
-      errorEl.textContent = 'Hubo un problema al consultar disponibilidad. Probá de nuevo.';
+      errorEl.textContent = isEn
+        ? 'There was a problem checking availability. Please try again.'
+        : 'Hubo un problema al consultar disponibilidad. Probá de nuevo.';
       errorEl.classList.add('show');
     } finally {
       loadingEl.classList.remove('show');
@@ -1004,45 +1076,214 @@
     if (!el) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // dejamos la palabra fija, sin animar
 
-    const HERO_VERBS = ['Descansá', 'Relajate', 'Desconectate', 'Hospedate', 'Renovate'];
-    const TYPE_SPEED_MS = 130;   // cuánto tarda en escribir cada letra
-    const ERASE_SPEED_MS = 90;   // cuánto tarda en borrar cada letra
-    const PAUSE_MS = 2200;       // cuánto queda la palabra completa antes de borrarse
+    const HERO_VERBS = {
+      es: ['Descansá', 'Relajate', 'Desconectate', 'Hospedate', 'Renovate'],
+      en: ['Unwind', 'Relax', 'Recharge', 'Escape', 'Renew']
+    };
+    const TYPE_SPEED_MS = 130;
+    const ERASE_SPEED_MS = 90;
+    const PAUSE_MS = 2200;
 
     let wordIndex = 0;
     let charIndex = 0;
+    let typingTimer = null;
+
+    function currentList() {
+      return HERO_VERBS[window.currentLang === 'en' ? 'en' : 'es'];
+    }
 
     function type() {
-      const word = HERO_VERBS[wordIndex];
+      const list = currentList();
+      const word = list[wordIndex % list.length];
       charIndex++;
       el.textContent = word.slice(0, charIndex);
 
       if (charIndex < word.length) {
-        setTimeout(type, TYPE_SPEED_MS);
+        typingTimer = setTimeout(type, TYPE_SPEED_MS);
       } else {
-        setTimeout(erase, PAUSE_MS);
+        typingTimer = setTimeout(erase, PAUSE_MS);
       }
     }
 
     function erase() {
-      const word = HERO_VERBS[wordIndex];
+      const list = currentList();
+      const word = list[wordIndex % list.length];
       charIndex--;
       el.textContent = word.slice(0, charIndex);
 
       if (charIndex > 0) {
-        setTimeout(erase, ERASE_SPEED_MS);
+        typingTimer = setTimeout(erase, ERASE_SPEED_MS);
       } else {
-        wordIndex = (wordIndex + 1) % HERO_VERBS.length;
-        setTimeout(type, TYPE_SPEED_MS);
+        wordIndex = (wordIndex + 1) % list.length;
+        typingTimer = setTimeout(type, TYPE_SPEED_MS);
       }
     }
 
-    charIndex = HERO_VERBS[0].length;
-    el.textContent = HERO_VERBS[0];
-    setTimeout(erase, PAUSE_MS);
+    // Reinicia la animación desde cero (se llama también al cambiar idioma).
+    window.restartHeroVerb = function () {
+      clearTimeout(typingTimer);
+      wordIndex = 0;
+      const list = currentList();
+      if (prefersReducedMotion) {
+        charIndex = list[0].length;
+        el.textContent = list[0];
+        return; // no animamos si el usuario prefiere menos movimiento
+      }
+      charIndex = list[0].length;
+      el.textContent = list[0];
+      typingTimer = setTimeout(erase, PAUSE_MS);
+    };
+
+    window.restartHeroVerb();
   })();
+
+  /* =========================================================================
+     SELECTOR DE IDIOMA (ES / EN)
+     -------------------------------------------------------------------------
+     Traduce toda la página sin recargarla. Funciona así:
+     - Los elementos con data-i18n="clave" cambian de texto según el
+       diccionario TRANSLATIONS de abajo.
+     - Los links de WhatsApp con data-wa-es/data-wa-en reconstruyen su
+       "href" con el mensaje pre-armado en el idioma correspondiente.
+     - Recuerda la elección del visitante en este navegador (localStorage),
+       así que si vuelve a entrar más tarde ve el mismo idioma que eligió.
+  ========================================================================= */
+  const TRANSLATIONS = {
+    nav_about: { es: 'Nosotros', en: 'About' },
+    nav_services: { es: 'Servicios', en: 'Services' },
+    nav_location: { es: 'Ubicación', en: 'Location' },
+    nav_book: { es: 'Reservar', en: 'Book now' },
+
+    hero_mid: { es: 'a los', en: 'at the' },
+    hero_end: { es: 'pies del', en: 'foot of' },
+    hero_lead: {
+      es: 'Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.',
+      en: 'Hotel Plaza is your home away from home in Andalgalá: warm rooms, close attention, and downtown just steps from the door.'
+    },
+    btn_reserve_wa: { es: 'Reservar por WhatsApp', en: 'Book via WhatsApp' },
+    btn_see_services: { es: 'Ver servicios', en: 'See amenities' },
+    stat1_n: { es: 'Centro', en: 'Downtown' },
+    stat1_l: { es: 'A metros de la plaza principal', en: 'Steps from the main square' },
+    stat2_l: { es: 'Recepción y atención', en: 'Front desk & service' },
+    stat3_l: { es: 'Trato de casa de familia', en: 'Home-style hospitality' },
+
+    about_eyebrow: { es: 'Nosotros', en: 'About us' },
+    about_title: { es: 'Un hotel familiar en el corazón de Andalgalá', en: 'A family-run hotel in the heart of Andalgalá' },
+    about_p1: {
+      es: 'Hotel Plaza funciona hace años en pleno centro de la ciudad, a pocas cuadras de la plaza principal y de los cerros que rodean el valle.',
+      en: 'Hotel Plaza has been running for years right in the city center, a few blocks from the main square and the hills that surround the valley.'
+    },
+    about_p2: {
+      es: 'Cada habitación está pensada para que el viaje se sienta liviano: descanso tranquilo, buena atención y toda la información que necesitás para moverte por la zona.',
+      en: 'Every room is designed to make your trip feel light: peaceful rest, good service, and all the info you need to get around the area.'
+    },
+    about_p3: {
+      es: 'Ya sea que vengas de paso, por trabajo o para conocer el Aconquija, acá tenés un lugar donde te esperan por tu nombre.',
+      en: "Whether you're passing through, on a work trip, or here to see the Aconquija, this is a place where they know you by name."
+    },
+
+    services_eyebrow: { es: 'Servicios', en: 'Amenities' },
+    services_title: { es: 'Todo lo esencial, bien resuelto', en: 'Every essential, well covered' },
+    services_lead: { es: 'Comodidades pensadas para que no tengas que pensar en nada más que en descansar.', en: 'Comforts designed so all you have to think about is resting.' },
+    svc1_title: { es: 'Wifi gratis', en: 'Free Wifi' },
+    svc1_desc: { es: 'Conexión disponible en todas las habitaciones y espacios comunes.', en: 'Connection available in all rooms and common areas.' },
+    svc2_title: { es: 'Desayuno incluido', en: 'Breakfast included' },
+    svc2_desc: { es: 'Arrancá el día con un desayuno casero antes de salir a recorrer.', en: 'Start the day with a homemade breakfast before heading out.' },
+    svc3_title: { es: 'Estacionamiento', en: 'Parking' },
+    svc3_desc: { es: 'Lugar privado y seguro para tu vehículo durante toda la estadía.', en: 'A private, secure spot for your vehicle during your whole stay.' },
+    svc4_title: { es: 'Habitaciones climatizadas', en: 'Climate-controlled rooms' },
+    svc4_desc: { es: 'Calefacción y ventilación para cualquier época del año en el valle.', en: 'Heating and cooling for any time of year in the valley.' },
+    svc5_title: { es: 'Ubicación céntrica', en: 'Central location' },
+    svc5_desc: { es: 'A metros de la plaza, bancos, comercios y paradas de colectivo.', en: 'Steps from the square, banks, shops, and bus stops.' },
+    svc6_title: { es: 'Atención personalizada', en: 'Personalized service' },
+    svc6_desc: { es: 'Te ayudamos a organizar excursiones, horarios y traslados en la zona.', en: 'We help you organize tours, schedules, and transport around the area.' },
+
+    location_eyebrow: { es: 'Ubicación', en: 'Location' },
+    location_title: { es: 'En el centro, a un paso de todo', en: 'Downtown, steps from everything' },
+    location_lead: {
+      es: 'Andalgalá, Catamarca — a los pies de la Sierra de Aconquija, con fácil acceso a los principales puntos de la ciudad.',
+      en: 'Andalgalá, Catamarca — at the foot of the Sierra de Aconquija, with easy access to the main spots in town.'
+    },
+    loc_addr_label: { es: 'Dirección', en: 'Address' },
+    loc_addr_value: { es: 'Centro de Andalgalá, Catamarca', en: 'Downtown Andalgalá, Catamarca' },
+    loc_hours_label: { es: 'Ingreso / Egreso', en: 'Check-in / Check-out' },
+    loc_hours_value: { es: 'Coordinamos el horario que mejor te quede', en: "We'll work out whatever time suits you best" },
+    loc_res_label: { es: 'Reservas', en: 'Bookings' },
+    loc_res_value: { es: 'Directo por WhatsApp, respondemos rápido', en: 'Straight through WhatsApp, we reply fast' },
+
+    booking_eyebrow: { es: 'Disponibilidad', en: 'Availability' },
+    booking_title: { es: 'Consultá y reservá en un paso', en: 'Check and book in one step' },
+    booking_lead: {
+      es: 'Elegí las fechas y el tipo de habitación. Si está disponible, te llevamos directo a WhatsApp con el mensaje ya armado.',
+      en: "Pick your dates and room type. If it's available, we'll take you straight to WhatsApp with the message ready to send."
+    },
+    label_checkin: { es: 'Fecha de ingreso', en: 'Check-in date' },
+    label_checkout: { es: 'Fecha de egreso', en: 'Check-out date' },
+    label_roomtype: { es: 'Habitación', en: 'Room type' },
+    opt_any: { es: 'Cualquiera', en: 'Any' },
+    opt_single: { es: 'Single', en: 'Single' },
+    opt_doble: { es: 'Doble', en: 'Double' },
+    opt_matrimonial: { es: 'Matrimonial', en: 'Queen' },
+    opt_triple: { es: 'Triple', en: 'Triple' },
+    opt_cuadruple: { es: 'Cuádruple', en: 'Quadruple' },
+    opt_departamento: { es: 'Departamento', en: 'Apartment' },
+    opt_suite_mat: { es: 'Suite Matrimonial', en: 'Queen Suite' },
+    opt_suite_triple: { es: 'Suite Triple', en: 'Triple Suite' },
+    btn_check: { es: 'Consultar disponibilidad', en: 'Check availability' },
+    error_incomplete: { es: 'Completá la fecha de ingreso y la fecha de egreso para consultar.', en: 'Fill in the check-in and check-out dates to search.' },
+    loading_text: { es: 'Consultando disponibilidad...', en: 'Checking availability...' },
+
+    cta_title: { es: '¿Preferís escribirnos directo?', en: 'Prefer to message us directly?' },
+    cta_lead: { es: 'También podés mandarnos un mensaje sin pasar por el buscador de arriba. Te respondemos enseguida.', en: 'You can also just send us a message without using the search above. We reply right away.' },
+    cta_btn: { es: 'Escribir al WhatsApp del hotel', en: "Message the hotel's WhatsApp" },
+
+    reviews_title: { es: '¿Ya nos visitaste?', en: 'Have you stayed with us?' },
+    reviews_lead: { es: 'Tu opinión nos importa. Contanos cómo fue tu estadía y ayudanos a mejorar para tu próxima visita.', en: 'Your feedback matters to us. Tell us how your stay was and help us improve for your next visit.' },
+    reviews_btn_google: { es: 'Dejar mi opinión en Google', en: 'Leave a review on Google' },
+    reviews_btn_wa: { es: 'Escribir por WhatsApp', en: 'Message us on WhatsApp' }
+  };
+
+  window.currentLang = localStorage.getItem('hotelplaza_lang') || 'es';
+
+  function applyLanguage(lang) {
+    window.currentLang = lang;
+    document.documentElement.lang = lang;
+    localStorage.setItem('hotelplaza_lang', lang);
+
+    // Textos estáticos marcados con data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const entry = TRANSLATIONS[key];
+      if (entry) el.textContent = entry[lang];
+    });
+
+    // Textos alternativos de las fotos del carrusel
+    document.querySelectorAll('[data-alt-es]').forEach(img => {
+      const alt = lang === 'en' ? img.getAttribute('data-alt-en') : img.getAttribute('data-alt-es');
+      if (alt) img.alt = alt;
+    });
+
+    // Links de WhatsApp con mensaje pre-armado
+    document.querySelectorAll('[data-wa]').forEach(a => {
+      const msg = lang === 'en' ? a.getAttribute('data-wa-en') : a.getAttribute('data-wa-es');
+      if (msg) a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    });
+
+    // Botones ES/EN del header
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+    });
+
+    // Reinicia la animación de tipeo del hero con las palabras del idioma nuevo
+    if (window.restartHeroVerb) window.restartHeroVerb();
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang-btn')));
+  });
+
+  applyLanguage(window.currentLang);
 </script>
 
 </body>
