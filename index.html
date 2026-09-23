@@ -51,7 +51,7 @@
   /* ---------- NAV ---------- */
   header{
     position: sticky; top:0; z-index: 50;
-    background: rgba(237,224,200,0.88);
+    background: rgba(216,191,147,0.92);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -64,7 +64,7 @@
     font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
     color: var(--dusk);
   }
-  .brand svg{ width:30px; height:30px; }
+  .brand-icon{ height:30px; width:auto; display:block; }
   .nav-links{ display:flex; gap:34px; font-size:0.92rem; font-weight:500; color: var(--dusk-soft); }
   .nav-links a{ position:relative; padding: 4px 0; transition: color .2s ease; }
   .nav-links a:hover{ color: var(--clay); }
@@ -298,10 +298,13 @@
   .location-list strong{ color: var(--dusk); display:block; margin-bottom:2px; font-weight:600; }
 
   /* ---------- BOOKING / DISPONIBILIDAD ---------- */
-  .booking{ background: var(--plaster-soft); }
+  .booking{ background: #4A3218; }
+  .booking .section-eyebrow{ color: var(--ochre); }
+  .booking .section-head h2{ color: var(--plaster-soft); }
+  .booking .section-head p{ color: rgba(244,235,217,0.72); }
   .booking-panel{
-    background: var(--plaster);
-    border: 1.5px solid var(--line);
+    background: #5C3F20;
+    border: 1.5px solid rgba(244,235,217,0.14);
     border-radius: 22px;
     padding: 40px;
   }
@@ -313,7 +316,7 @@
   }
   .field{ min-width: 0; }
   .field label{
-    display:block; font-size:0.82rem; font-weight:600; color: var(--dusk-soft);
+    display:block; font-size:0.82rem; font-weight:600; color: rgba(244,235,217,0.7);
     margin-bottom:8px; letter-spacing:0.02em;
   }
   .field input, .field select{
@@ -321,13 +324,23 @@
     width:100%;
     padding: 12px 14px;
     border-radius: 10px;
-    border: 1.5px solid var(--line);
-    background: var(--plaster-soft);
+    border: 1.5px solid rgba(244,235,217,0.18);
+    background: #4A3218;
     font-family: 'Work Sans', sans-serif;
     font-size: 0.95rem;
-    color: var(--dusk);
+    color: var(--plaster-soft);
     text-align: left;
     transition: border-color .2s ease;
+  }
+  .field select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4EBD9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
   }
   .field input[type="date"]{
     min-height: 44px;
@@ -335,29 +348,39 @@
   .field input[type="date"]::-webkit-date-and-time-value{
     text-align: left;
   }
-  .field input:focus, .field select:focus{
-    outline:none; border-color: var(--clay);
+  .field input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(0.9);
   }
-  .booking-form .btn-primary{ padding: 12px 26px; white-space:nowrap; height:47px; }
+  .field input:focus, .field select:focus{
+    outline:none; border-color: var(--ochre);
+  }
+  .booking-form .btn-primary{
+    padding: 12px 26px; white-space:nowrap; height:47px;
+    background: var(--ochre); color: var(--dusk);
+    box-shadow: 0 6px 18px rgba(201,138,62,0.28);
+  }
+  .booking-form .btn-primary:hover{
+    background: #B87A32; box-shadow: 0 10px 24px rgba(201,138,62,0.34);
+  }
 
   .booking-error{
-    margin-top:14px; font-size:0.88rem; color: var(--clay-dark); display:none;
+    margin-top:14px; font-size:0.88rem; color: #F0A98A; display:none;
   }
   .booking-error.show{ display:block; }
 
   .booking-results{ margin-top: 34px; display:none; }
   .booking-results.show{ display:block; }
   .booking-results-head{
-    font-size:0.88rem; color: var(--dusk-soft); margin-bottom:18px;
+    font-size:0.88rem; color: rgba(244,235,217,0.7); margin-bottom:18px;
   }
   .booking-loading{
     display:none; align-items:center; gap:10px; margin-top:28px;
-    font-size:0.9rem; color: var(--dusk-soft);
+    font-size:0.9rem; color: rgba(244,235,217,0.7);
   }
   .booking-loading.show{ display:flex; }
   .spinner{
     width:16px; height:16px; border-radius:50%;
-    border: 2px solid var(--line); border-top-color: var(--clay);
+    border: 2px solid rgba(244,235,217,0.18); border-top-color: var(--ochre);
     animation: spin .7s linear infinite;
   }
   @keyframes spin{ to{ transform: rotate(360deg); } }
@@ -366,23 +389,23 @@
     display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
   }
   .room-card{
-    border: 1.5px solid var(--line);
+    border: 1.5px solid rgba(244,235,217,0.14);
     border-radius: 16px;
     padding: 22px;
-    background: var(--plaster-soft);
+    background: #4A3218;
     display:flex; flex-direction:column; gap:10px;
   }
   .room-card.unavailable{ opacity:0.55; }
   .room-card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-  .room-card h4{ font-family:'Fraunces',serif; font-weight:500; font-size:1.15rem; color: var(--dusk); }
-  .room-price{ font-size:0.88rem; color: var(--dusk-soft); }
+  .room-card h4{ font-family:'Fraunces',serif; font-weight:500; font-size:1.15rem; color: var(--plaster-soft); }
+  .room-price{ font-size:0.88rem; color: rgba(244,235,217,0.72); }
   .badge{
     font-size:0.72rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase;
     padding: 5px 11px; border-radius:999px; white-space:nowrap;
   }
-  .badge.available{ background: rgba(92,107,71,0.16); color: var(--cactus); }
-  .badge.unavailable{ background: rgba(156,74,46,0.14); color: var(--clay-dark); }
-  .room-card p.desc{ font-size:0.88rem; color: var(--dusk-soft); line-height:1.5; }
+  .badge.available{ background: rgba(201,138,62,0.18); color: var(--ochre); }
+  .badge.unavailable{ background: rgba(240,169,138,0.14); color: #F0A98A; }
+  .room-card p.desc{ font-size:0.88rem; color: rgba(244,235,217,0.72); line-height:1.5; }
   .room-card .btn{ margin-top:6px; align-self:flex-start; padding:10px 18px; font-size:0.86rem; }
 
   @media (max-width: 760px){
@@ -394,6 +417,7 @@
 
   @media (max-width: 400px){
     .field input, .field select{ font-size: 0.88rem; padding: 9px 12px; }
+    .field select{ padding-right: 36px; }
     .field input[type="date"]{ min-height: 40px; }
   }
 
@@ -405,6 +429,34 @@
   .reviews h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--dusk); margin-bottom:16px; }
   .reviews p{ font-size:1.05rem; line-height:1.65; color: var(--dusk-soft); margin-bottom:34px; }
   .reviews-ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  .testimonials{
+    max-width: 1140px; margin: 64px auto 0; text-align:left;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .testimonial-card{
+    background: var(--plaster-soft);
+    border: 1.5px solid var(--line);
+    border-radius: 18px;
+    padding: 26px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .testimonial-card svg{ width:26px; height:26px; color: var(--ochre); }
+  .testimonial-quote{
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.05rem;
+    color: var(--dusk); line-height:1.4;
+  }
+  .testimonial-body{ font-size:0.92rem; line-height:1.6; color: var(--dusk-soft); }
+  .testimonial-source{
+    font-size:0.78rem; color: var(--dusk-soft); opacity:0.75;
+    letter-spacing:0.02em; margin-top:auto; padding-top:6px;
+  }
+  .testimonial-stars{ display:flex; gap:2px; }
+  .testimonial-stars svg{ width:15px; height:15px; color: var(--ochre); }
+  .testimonial-name{ font-weight:600; color: var(--dusk); }
+  @media (max-width: 900px){
+    .testimonials{ grid-template-columns: 1fr; }
+  }
 
   /* ---------- CTA BAND ---------- */
   .cta-band{
@@ -428,22 +480,10 @@
   .footer-links{ display:flex; gap:24px; font-size:0.88rem; }
   .footer-links a:hover{ color: var(--ochre); }
 
-  /* ---------- WHATSAPP FLOAT ---------- */
-  .wa-float{
-    position: fixed; bottom: 26px; right: 26px; z-index: 100;
-    background: var(--cactus); color: var(--plaster-soft);
-    width:60px; height:60px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
-    transition: transform .2s ease;
-  }
-  .wa-float:hover{ transform: scale(1.08); }
-  .wa-float svg{ width:28px; height:28px; }
-
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     .fade-up{ opacity:1; transform:none; transition:none; }
-    .wa-float:hover, .btn-primary:hover{ transform:none; }
+    .btn-primary:hover{ transform:none; }
   }
 
   /* ---------- RESPONSIVE ---------- */
@@ -470,10 +510,7 @@
 <header>
   <nav class="wrap">
     <a href="#" class="brand">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 4L36 14V36H4V14L20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M14 36V22H26V36" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
+      <img src="images/logo-icon.png" alt="Hotel Plaza" class="brand-icon">
       Hotel Plaza
     </a>
     <div class="nav-links">
@@ -481,6 +518,7 @@
       <a href="#servicios" data-i18n="nav_services">Servicios</a>
       <a href="#ubicacion" data-i18n="nav_location">Ubicación</a>
       <a href="#reservar" data-i18n="nav_book">Reservar</a>
+      <a href="#resenas" data-i18n="nav_reviews">Reseñas</a>
     </div>
     <div class="lang-toggle">
       <button type="button" data-lang-btn="es" class="active">
@@ -507,7 +545,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-copy">
-      <span class="eyebrow">Andalgalá · Catamarca</span>
+      <span class="eyebrow">Andalgalá · Catamarca · Argentina</span>
       <h1><span id="hero-verb" class="hero-verb">Descansá</span> <span data-i18n="hero_mid">a los</span><br><span data-i18n="hero_end">pies del</span> <em>Aconquija</em></h1>
       <p class="lead" data-i18n="hero_lead">Hotel Plaza es tu lugar de siempre en Andalgalá: habitaciones cálidas, atención de cerca y el centro de la ciudad a pasos de la puerta.</p>
       <div class="hero-ctas">
@@ -617,12 +655,12 @@
         <p data-i18n="svc2_desc">Arrancá el día con un desayuno casero antes de salir a recorrer.</p>
       </div>
       <div class="service-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/><path d="M3 12h18" /></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="11" width="18" height="6.5" rx="2"/><path d="M5 17.5V19M19 17.5V19" stroke-linecap="round"/><circle cx="7.5" cy="14.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="14.3" r="1.1" fill="currentColor" stroke="none"/></svg>
         <h3 data-i18n="svc3_title">Estacionamiento</h3>
         <p data-i18n="svc3_desc">Lugar privado y seguro para tu vehículo durante toda la estadía.</p>
       </div>
       <div class="service-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18" /><path d="M8 4v5" /><path d="M12 13h5" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.2"/><path d="M8 2.3V3.6M8 12.4v1.3M2.3 8h1.3M12.4 8h1.3M4.2 4.2l0.9 0.9M11 11l0.9 0.9M11.8 4.2l-0.9 0.9M5.1 11l-0.9 0.9" stroke-linecap="round"/><path d="M15.5 12v9M12.3 14.2l3.2-2.2 3.2 2.2M12.3 18.8l3.2 2.2 3.2-2.2M12.3 16.5h6.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3 data-i18n="svc4_title">Habitaciones climatizadas</h3>
         <p data-i18n="svc4_desc">Calefacción y ventilación para cualquier época del año en el valle.</p>
       </div>
@@ -658,7 +696,7 @@
           <div><strong data-i18n="loc_hours_label">Ingreso / Egreso</strong><span data-i18n="loc_hours_value">Coordinamos el horario que mejor te quede</span></div>
         </li>
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3v-3H6a2 2 0 0 1-2-2V6Z" stroke-linejoin="round"/><path d="M8 10.5l2.3 2.3L16 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <div><strong data-i18n="loc_res_label">Reservas</strong><span data-i18n="loc_res_value">Directo por WhatsApp, respondemos rápido</span></div>
         </li>
       </ul>
@@ -738,7 +776,7 @@
   </div>
 </section>
 
-<section class="reviews">
+<section class="reviews" id="resenas">
   <div class="wrap reviews-inner">
     <div class="stars fade-up">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -777,7 +815,46 @@
       </a>
     </div>
   </div>
+
+  <div class="wrap">
+    <div class="testimonials fade-up">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-body">Buenas tardes por medio del presente deseo agradecer muy especialmente la atención recibida de la encargada de la recepción Albita quien se esmeró para poder encontrar un lugar para poder alojarme en el hotel ya que no tenía reserva, además me solucionó la excursión a la mina, nos asesoró donde comer estuvo siempre a nuestra disposición. Que importante es tener personas como Albita que prestigian la empresa.</p>
+        <p class="testimonial-source"><span class="testimonial-name">Rodolfo Pérez Jáuregui</span><br>Reseña de Google</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-body">Todo muy bien desde que llegas, la persona que nos recibió (Albita) muy agradable y colaboradora. La habitación hermosa y súper cómoda para 4 o 5 personas, tiene aire es muy amplia, los colchones híper cómodos! Cuenta c pileta y el desayuno lo sirven a la mesa.</p>
+        <p class="testimonial-source"><span class="testimonial-name">Fabiana Ortiz</span><br>Reseña de Google</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-body">Típico Hotel de Pueblo, del Interior de nuestro país. Bien equipado, muy buena cochera, buen desayuno, camas cómodas y a media cuadra del centro. Muy buena relación Servicio/Precio. Recomendadísimo! Buena atención por parte de su personal!!</p>
+        <p class="testimonial-source"><span class="testimonial-name">Lucas Romano</span><br>Reseña de Google</p>
+      </div>
+    </div>
+  </div>
 </section>
+
 
 <footer>
   <div class="wrap footer-grid">
@@ -789,13 +866,10 @@
       <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
       <a href="#servicios" data-i18n="nav_services">Servicios</a>
       <a href="#ubicacion" data-i18n="nav_location">Ubicación</a>
+      <a href="#reservar" data-i18n="nav_book">Reservar</a>
     </div>
   </div>
 </footer>
-
-<a class="wa-float" data-wa data-wa-es="Hola, quiero consultar disponibilidad en Hotel Plaza" data-wa-en="Hi, I'd like to check availability at Hotel Plaza" href="https://wa.me/5493835123456?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Hotel%20Plaza" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14.4 3 12.9 3 12c0-4.7 3.8-8.5 8.5-8.5S20 7.3 20 12s-4.3 8.2-8.5 8.2z"/></svg>
-</a>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
@@ -1158,6 +1232,7 @@
     nav_services: { es: 'Servicios', en: 'Services' },
     nav_location: { es: 'Ubicación', en: 'Location' },
     nav_book: { es: 'Reservar', en: 'Book now' },
+    nav_reviews: { es: 'Reseñas', en: 'Reviews' },
 
     hero_mid: { es: 'a los', en: 'at the' },
     hero_end: { es: 'pies del', en: 'foot of' },
